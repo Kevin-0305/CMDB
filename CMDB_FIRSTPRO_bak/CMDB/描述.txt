@@ -1,0 +1,2 @@
+cmdbServer  #django项目后端app
+cmdFrontend  #前端框架,vue,dist为打包后的文件
