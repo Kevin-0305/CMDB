@@ -93,8 +93,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',  # 或者使用 mysql.connector.django
         'NAME': 'cmdb',
         'USER': 'root',
-        'PASSWORD': 'Shenzhen@2019',
-        'HOST':'192.168.2.96',
+        'PASSWORD': '123456',
+        'HOST':'59.110.68.53',
         'PORT':'3306',
     }
 }
