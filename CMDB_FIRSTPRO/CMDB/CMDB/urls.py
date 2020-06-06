@@ -16,14 +16,28 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic.base import TemplateView
-from cmdbServer import users
+from cmdbServer.controller import users,server
+from cmdbServer.controller.payment import ali_pay
+from rest_framework.documentation import include_docs_urls
+from rest_framework_swagger.views import get_swagger_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('docs/', include_docs_urls(title='站点页面标题')),
+    path(r'docs/', get_swagger_view(title='API文档')),
     path('',TemplateView.as_view(template_name="index.html")),
+    # path('pay',TemplateView.as_view(template_name="pay.html")),
 
     path('users/',users.Users.as_view()),
     path('user/',users.User.as_view()),
     path('user/<int:id>/',users.User.as_view()),
 
+    path('servers/',server.Servers.as_view()),
+    path('server/',server.Server.as_view()),
+    path('server/<int:id>/',server.Server.as_view()),
+
+    # path('pay',ali_pay.pay),
+    # path('notify',ali_pay.updateOrder)
+    path("pay",ali_pay.pay),
+    # path("check_pay", ali_pay.check_pay)
 ]
