@@ -100,17 +100,18 @@ def pay(request):
     alipay_public_key_path = "keys/alipay_public_2048.txt"
     alipay = AliPay(
     appid="2016102200736333",
-    app_notify_url=None,  # 默认回调url
+    app_notify_url="http://127.0.0.1:8804/page2/",  # 默认回调url
     app_private_key_string=open(app_private_key_path).read(),
     alipay_public_key_string=open(alipay_public_key_path).read(),  # 支付宝的公钥，验证支付宝回传消息使用，不是你自己的公钥,
     sign_type="RSA2", # RSA 或者 RSA2
-    debug=True  # 默认False
+    debug=True,  # 默认False
     )
-    order_string = alipay.api_alipay_trade_app_pay(
-    out_trade_no=datetime.now().strftime('%Y''%m''%d''%H''%M''%S'),
+    order_string = alipay.api_alipay_trade_page_pay(
+    # out_trade_no=datetime.now().strftime('%Y''%m''%d''%H''%M''%S'),
+    out_trade_no="x2" + str(time.time()),
     total_amount=0.01,
-    subject="测试",
-    notify_url="https://example.com/notify" # 可选, 不填则使用默认notify url
+    subject="充气式赵俊明",
+    # notify_url="https://blog.csdn.net/" # 可选, 不填则使用默认notify url
     )
     pay_url = 'https://openapi.alipaydev.com/gateway.do?' + order_string
     print(pay_url)
